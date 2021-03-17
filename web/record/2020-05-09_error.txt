@@ -1,0 +1,1 @@
+{"status": 0, "message": "获取失败404！", "type": "get_movie", "url": "https://api.douban.com/v2/movie/subject/35030138?apikey=0df993c66c0c636e29ecbb5344252a4a" ,"movie_id": 35030138}

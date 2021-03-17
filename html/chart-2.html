@@ -1,0 +1,571 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>豆瓣探索者</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="never">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/notika-custom-icon.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vendor/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+        var BASE_URL = "http://127.0.0.1:8000";
+        </script>
+        <style type="text/css">
+            #loading #circle{background-color:#ffffff;border:5px solid rgba(10,10,10,0.9);opacity:.9;border-right:5px solid rgba(0,0,0,0);border-left:5px solid rgba(0,0,0,0);border-radius:50px;box-shadow:0 0 35px #404040;width:80px;height:80px;margin:0 auto;position:fixed;left:60px;bottom:50px;animation:spinPulse 1s infinite linear;}
+            #loading #circle1{background-color:#ffffff;border:6px solid rgba(20,20,20,0.9);opacity:.9;border-left:6px solid rgba(0,0,0,0);border-right:6px solid rgba(0,0,0,0);border-radius:50px;box-shadow:0 0 15px #202020;width:60px;height:60px;margin:0 auto;position:fixed;left:69px;bottom:59px;animation:spinoffPulse 1s infinite linear;}
+            #loading #circletext{width:80px;height:20px;margin:0 auto;position:fixed;left:70px;bottom:84px;color:#000}
+            @keyframes spinPulse{0%{transform:rotate(160deg);opacity:0;box-shadow:0 0 1px #505050;}50%{transform:rotate(145deg);opacity:1;}100%{transform:rotate(-320deg);opacity:0;}}
+            @keyframes spinoffPulse{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+            .search-dd:hover{
+                display: block!important;
+            }
+        </style>
+    </head>
+    
+<body>
+<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+<!-- Start Header Top Area -->
+		<div id="app">
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                      <a href="#"><h1 style="font-family: 宋体;color: black;">豆瓣探索者</h1></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-search"></i></span></a>
+                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
+                                    <div class="search-input">
+                                        <i class="notika-icon notika-left-arrow"></i>
+                                        <input type="text" id="get_search" onchange="search();"/>
+                                        <div id="search_contain">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
+                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
+                                    <div class="hd-mg-tt">
+                                        <h2>消息</h2>
+                                    </div>
+                                    <div class="hd-message-info">
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/1.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>李磊</h3>
+                                                    <p>评论了最新电影《校园情圣》</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="hd-mg-va">
+                                        <a href="#">点击全部</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- End Header Top Area -->
+            <!-- Mobile Menu start -->
+            <!-- Mobile Menu end -->
+            <!-- Main Menu area start-->
+            <div class="main-menu-area mg-tb-40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                                <li class="active"><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> 图表</a>
+                                </li>
+                                <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> 热门</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content custom-menu-content">
+                                <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
+                                    <ul class="notika-main-menu-dropdown">
+                                        <li ><a href="index.html" >电影</a>
+                                        </li>
+                                        <li><a href="chart-2.html" style="background: rgb(6, 247, 164) none repeat scroll 0% 0%;border-radius: 10px;">音乐</a>
+                                        </li>
+                                        <li><a href="chart-3.html">阅读</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
+                                    <ul class="notika-main-menu-dropdown">
+                                        <li><a href="movie.html">电影</a>
+                                        </li>
+                                        <li><a href="music.html">音乐</a>
+                                        </li>
+                                        <li><a href="book.html">阅读</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Menu area End-->
+            <!-- Start Status area -->
+            <div class="notika-status-area">
+                <div class="container">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ movies }}</span></h2>
+                                        <p>电影数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ movies_comments }}</span></h2>
+                                        <p>电影短评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ movies_reviews }}</span></h2>
+                                        <p>电影长评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ music }}</span></h2>
+                                        <p>音乐数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ music_comments }}</span></h2>
+                                        <p>音乐短评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ music_reviews }}</span></h2>
+                                        <p>音乐长评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ book }}</span></h2>
+                                        <p>书籍数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ book_comments }}</span></h2>
+                                        <p>书籍短评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ book_reviews }}</span></h2>
+                                        <p>书籍长评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div>
+                                        <span>数据量：</span><br>
+                                        <button onclick="freshChartNumberAll();" class="btn btn-primary">调整</button>
+                                    </div>
+                                    &nbsp;
+                                    <input id="number_count" onkeyup="this.value=this.value.replace(/\D/gi,'')" value="" style="width: 55px;height:40px;border-radius: 8%;border: 1px solid black;margin: 5px auto;">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <button data-toggle="tooltip" data-placement="left" onclick="freshChartAll();" class="btn breadcomb-report btn-primary" style="margin: 10px auto;">
+                                        重新生成图表
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Status area-->
+            <!-- Start Sale Statistic area-->
+            <div class="sale-statistic-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="musics_rating_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="musics_rating_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对音乐的评分进行分析</h2>
+									<h4>饼图</h4>
+                                    <p style="height: 600px">通过对数据集的音乐评分比例分布图分析可以看出，大众对于整个音乐市场产品的评分在8分以上之间。由此可以反映出大众对于这个数据集中音乐的评价还是很高的，这些音乐是多数人喜欢的类型。</p>
+									<h4>柱状图</h4>
+                                  <p style="height: 550px">通过各评分音乐的柱状图可以发现，数据集中9分的评分最多，反映出大众对于数据集中多数音乐的评价还是很高的，9分已经属于他们喜爱的范围，而不仅仅局限于可以接受。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="musics_pubdate_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对音乐发行趋势进行分析</h2>
+                                    <p style="height: 550px">通过历年来音乐的发行数量我们可以判断出整个音乐市场的活跃情况。从这张图中我们可以看出音乐市场还是很稳定的，能够一直保持有发行量。在这个数据集中，某些时间点的发行量还是比较大的，说明整体的音乐行业的发行量也还是不错的。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="musics_year_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="musics_year_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对历年音乐产量进行分析</h2>
+									<h4>饼图</h4>
+                                    <p style="height: 600px">通过历年音乐产量可以发现，这个数据集中展示的音乐历年产量还是比较均匀分布的。通过分析不难发现，因为音乐在历史上就一直存在，只不过以不同的形式存在。所以在现代，发行量保持在一定的量级也很正常。</p>
+									<h4>柱状图</h4>
+                                    <p style="height: 550px">从柱状图中可以发现，近年来的产量较往年还是有所提高的，说明市场在不断地扩大，听众在不断地变多，随之产量在不断地提升。这也给创作人带来了压力，但同时产量提升的同时要注重质量。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="musics_genres_pie" style="width:800px; height:600px;"></div>
+										 <div id="musics_genres_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对不同地域音乐标签进行分析</h2>
+                                    <h4>饼图</h4>
+                                    <p style="height: 600px">不同音乐标签的产量直接反应了大众喜爱的音乐类型。这张图中摇滚、OST、电影原声等类型以及欧美歌曲、华语乐曲、日语歌等几大语言歌曲产量较多。多种标签的音乐反应了大众需求的多样性。</p>
+									<h4>柱状图</h4>
+                                  <p style="height: 550px">这张图中我们可以发现各种类型的音乐以及各种语言的音乐产量都是比较多的，这说明大众对各种类型及语言的音乐都是可以接受的，具有包容性。说明未来音乐市场的发展潜力很大。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="musics_star_pubdate_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                   
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对发行时间与评分的关系进行分析</h2>
+                                    <p style="height: 550px">通过历年来音乐的发行数量我们可以判断出整个音乐市场的活跃情况。从这张图中我们可以看出音乐市场还是很稳定的，能够一直保持有发行量。在这个数据集中，某些时间点的发行量还是比较大的，说明整体的音乐行业的发行量也还是不错的。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                     
+                                        <div id="musics_star_comments_count_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对评论数与评分关系进行分析</h2>
+                                  <p style="height: 550px">这张图展示了评论数与评分的关系。当评分越来越高时，评论数随之增长。我们分析是因为评分越高带来更多的听众，则带来更多人的想法与言论。反之评分低的作品并不吸引人，因此带来的听众不多，从而评论数不多。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                   
+               
+              </div>
+            </div>
+            <div class="footer-copyright-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="footer-copy-right">
+                                <p>Copyright &copy; 2020 Company 豆瓣探索者 All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="btn_top" style="position:fixed;bottom:21px;right:21px;">
+                <a href="#top"><img src="https://www.sju.site/web/Zero/images/scrollup.png" alt="返回顶部" /></a>
+            </div>
+            <div id="loading" >
+                <div class="clear"></div>
+                <div id="circle"></div>
+                <div id="circletext">加载完成！</div>
+                <div id="circle1"></div>
+            </div>
+		</div>
+        <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/sparkline/jquery.sparkline.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/sparkline/sparkline-active.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+        <script type="text/javascript" src="js/echarts-gl.js"></script>
+        <script src="js/js.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">  
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    movies: null,
+                    movies_comments: null,
+                    movies_reviews: null,
+                    music: null,
+                    music_comments: null,
+                    music_reviews: null,
+                    book: null,
+                    book_comments: null,
+                    book_reviews: null,
+                    width: 800,
+                    heigth: 600
+                }
+            },
+            mounted() {
+                axios
+                    .get(BASE_URL + '/count/')
+                    .then(response => (
+                    this.movies = response.data.data.movies,
+                    this.movies_comments = response.data.data.movies_comments,
+                    this.movies_reviews = response.data.data.movies_reviews,
+                    this.music = response.data.data.music,
+                    this.music_comments = response.data.data.music_comments,
+                    this.music_reviews = response.data.data.music_reviews,
+                    this.book = response.data.data.book,
+                    this.book_comments = response.data.data.book_comments,
+                    this.book_reviews = response.data.data.book_reviews))
+                    .
+                catch (function (error) { // 请求失败处理
+                    console.log(error);
+                });
+            }
+        })
+
+         dt = [['music', 'musics_rating_pie', 50], ['music', 'musics_rating_bar', 50], [
+                    'music', 'musics_pubdate_scatter', 50], ['music', 'musics_year_pie', 50], ['music',
+                    'musics_year_bar', 50],  ['music', 'musics_genres_pie', 50], ['music', 'musics_genres_bar', 50], ['music','musics_star_pubdate_scatter', 50], ['music', 'musics_star_comments_count_scatter', 50]];
+        var i = 0;
+        var num = 500;
+        $(function () {
+            $("#circle").fadeIn(800);
+            $("#circle1").fadeIn(1200);
+            $("#circletext").text("加载中！").fadeIn(1700);
+            fetchChartAll(dt[i][0], dt[i][1], num, i, 0);
+	        showScroll();
+	        function showScroll(){
+	        	$(window).scroll( function() { 
+	        	    scrollValue=$(window).scrollTop();
+	        		scrollValue > 100 ? $('div[id=btn_top]').fadeIn():$('div[id=btn_top]').fadeOut();
+	        	} );
+	        	$('#btn_top').click(function(){	
+	        		var value=scrollValue/8;
+// 	        		console.log(Math.round(value));
+	        		$("html,body").animate({scrollTop:0},Math.round(value));	
+	        	});	
+	        }
+        });
+        
+        
+        function freshChartAll() {
+            fetchChartAll(dt[i][0], dt[i][1], num, i, 1);
+            $("#circle").fadeIn(800);
+            $("#circle1").fadeIn(1200);
+            $("#circletext").text("加载中！").fadeIn(1700);
+        }
+        function freshChartNumberAll(){
+            num = $('#number_count').val();
+            fetchChartAll(dt[i][0], dt[i][1], num, i, 0);
+            $("#circle").fadeIn(800);
+            $("#circle1").fadeIn(1200);
+            $("#circletext").text("加载中！").fadeIn(1700);
+        }
+        function fetchChartAll(type, typ, num, j, nochache) {
+            // typ = GetQueryValue("typ");
+            var chart = echarts.init(document.getElementById(typ), 'white', {
+                renderer: 'canvas'
+            });
+            ur = BASE_URL + "/charts/" + type + "/?id=&typ=" + typ + "&num=" + num + "&nochache=" + nochache;
+            if (typ == "get_emotion") {
+                ur = BASE_URL + "/get_emotion/?id=&type=" + type + "&nochache=" + nochache;
+            } else if (typ == "wordcloud") {
+                ur = BASE_URL + "/wordcloud/?id=&type=" + type + "&nochache=" + nochache;
+            }
+            $.ajax({
+                type: "GET",
+                url: ur,
+                dataType: 'json',
+                success: function (result) {
+                    chart.setOption(result.data);
+                    j++;
+                    console.log(j);
+                    if (j < dt.length) {
+                        // if(j<2){
+                        fetchChartAll(dt[j][0], dt[j][1], num, j, nochache); //链式调用
+                    }else{
+                        $("#circle").fadeOut(800);
+                        $("#circle1").fadeOut(1200);
+                        $("#circletext").text("加载完成！").fadeOut(1700);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $("#circle").fadeOut(800);
+                    $("#circle1").fadeOut(1200);
+                    $("#circletext").text("加载完成！").fadeOut(1700);
+                    alert("请求失败，服务器端出错！");
+                    j++;
+                    if (j < dt.length) {
+                        // if(j<2){
+                        fetchChartAll(dt[j][0], dt[j][1], num, j, nochache); //链式调用
+                    }else{
+                        $("#circle").fadeOut(800);
+                        $("#circle1").fadeOut(1200);
+                        $("#circletext").text("加载完成！").fadeOut(1700);
+                    }
+                    return
+                }
+            });
+        }
+
+        function fetchChart(type, typ, id, num, nochache) {
+            // typ = GetQueryValue("typ");
+            var chart = echarts.init(document.getElementById(typ), 'white', {
+                renderer: 'canvas'
+            });
+            ur = BASE_URL + "/charts/" + type + "/?id=" + id + "&typ=" + typ + "&num=" + num + "&nochache=" + nochache;
+            if (typ == "get_emotion") {
+                ur = BASE_URL + "/get_emotion/?id=" + id + "&type=" + type + "&nochache=" + nochache + "&n=" + num;
+            } else if (typ == "wordcloud") {
+                ur = BASE_URL + "/wordcloud/?id=" + id + "&type=" + type + "&nochache=" + nochache;
+            }
+            $.ajax({
+                type: "GET",
+                url: ur,
+                dataType: 'json',
+                success: function (result) {
+                    chart.setOption(result.data);
+                }
+            });
+            // return 1;
+        }
+        </script>
+    </body>
+
+</html>

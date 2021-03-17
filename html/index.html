@@ -1,0 +1,674 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>豆瓣探索者</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="never">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/notika-custom-icon.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vendor/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+        var BASE_URL = "http://127.0.0.1:8000";
+        </script>
+        <style type="text/css">
+            #loading #circle{background-color:#ffffff;border:5px solid rgba(10,10,10,0.9);opacity:.9;border-right:5px solid rgba(0,0,0,0);border-left:5px solid rgba(0,0,0,0);border-radius:50px;box-shadow:0 0 35px #404040;width:80px;height:80px;margin:0 auto;position:fixed;left:60px;bottom:50px;animation:spinPulse 1s infinite linear;}
+            #loading #circle1{background-color:#ffffff;border:6px solid rgba(20,20,20,0.9);opacity:.9;border-left:6px solid rgba(0,0,0,0);border-right:6px solid rgba(0,0,0,0);border-radius:50px;box-shadow:0 0 15px #202020;width:60px;height:60px;margin:0 auto;position:fixed;left:69px;bottom:59px;animation:spinoffPulse 1s infinite linear;}
+            #loading #circletext{width:80px;height:20px;margin:0 auto;position:fixed;left:70px;bottom:84px;color:#000}
+            @keyframes spinPulse{0%{transform:rotate(160deg);opacity:0;box-shadow:0 0 1px #505050;}50%{transform:rotate(145deg);opacity:1;}100%{transform:rotate(-320deg);opacity:0;}}
+            @keyframes spinoffPulse{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+            .search-dd:hover{
+                display: block!important;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- Start Header Top Area -->
+		<div id="app">
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                      <a href="#"><h1 style="font-family: 宋体;color: black;">豆瓣探索者</h1></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-search"></i></span></a>
+                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
+                                    <div class="search-input">
+                                        <i class="notika-icon notika-left-arrow"></i>
+                                        <input type="text" id="get_search" onchange="search();"/>
+                                        <div id="search_contain">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
+                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
+                                    <div class="hd-mg-tt">
+                                        <h2>消息</h2>
+                                    </div>
+                                    <div class="hd-message-info">
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/1.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>李磊</h3>
+                                                    <p>评论了最新电影《校园情圣》</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="hd-mg-va">
+                                        <a href="#">点击全部</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- End Header Top Area -->
+            <!-- Mobile Menu start -->
+            <!-- Mobile Menu end -->
+            <!-- Main Menu area start-->
+            <div class="main-menu-area mg-tb-40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                                <li class="active"><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> 图表</a>
+                                </li>
+                                <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> 热门</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content custom-menu-content">
+                                <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
+                                    <ul class="notika-main-menu-dropdown">
+                                        <li ><a href="index.html" style="background: rgb(6, 247, 164) none repeat scroll 0% 0%;border-radius: 10px;">电影</a>
+                                        </li>
+                                        <li><a href="chart-2.html">阅读</a>
+                                        </li>
+                                        <li><a href="chart-3.html">音乐</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
+                                    <ul class="notika-main-menu-dropdown">
+                                        <li><a href="movie.html">电影</a>
+                                        </li>
+                                        <li><a href="music.html">音乐</a>
+                                        </li>
+                                        <li><a href="book.html">阅读</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+            <!-- Main Menu area End-->
+            <!-- Start Status area -->
+            <div class="notika-status-area">
+                <div class="container">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ movies }}</span></h2>
+                                        <p>电影数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ movies_comments }}</span></h2>
+                                        <p>电影短评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ movies_reviews }}</span></h2>
+                                        <p>电影长评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ music }}</span></h2>
+                                        <p>音乐数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ music_comments }}</span></h2>
+                                        <p>音乐短评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ music_reviews }}</span></h2>
+                                        <p>音乐长评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ book }}</span></h2>
+                                        <p>书籍数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ book_comments }}</span></h2>
+                                        <p>书籍短评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div class="website-traffic-ctn">
+                                         <h2><span class="counter">{{ book_reviews }}</span></h2>
+                                        <p>书籍长评数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <div>
+                                        <span>数据量：</span><br>
+                                        <button onclick="freshChartNumberAll();" class="btn btn-primary">调整</button>
+                                    </div>
+                                    &nbsp;
+                                    <input id="number_count" onkeyup="this.value=this.value.replace(/\D/gi,'')" value="" style="width: 55px;height:40px;border-radius: 8%;border: 1px solid black;margin: 5px auto;">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                                    <button data-toggle="tooltip" data-placement="left" onclick="freshChartAll();" class="btn breadcomb-report btn-primary" style="margin: 10px auto;">
+                                        重新生成图表
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Status area-->
+            <!-- Start Sale Statistic area-->
+            <div class="sale-statistic-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_rating_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="movies_rating_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对电影评分比例进行分析</h2>
+									<h4>饼图</h4>
+                                    <p style="height: 600px">通过对数据集的电影评分比例分布图分析可以看出，大众对于整个电影市场产品的评分在6-8之间。这个评分不难看出绝大多数电影是处于及格分（6分）以上但未达到良好（8分）的状态，并且及格分以下的作品比良好及优秀的作品要多，这说明电影市场的优质率还是较低的。这总体表现了未来的电影市场还是有很大的进步空间</p>
+									<h4>柱状图</h4>
+									<p style="height: 550px">柱状图：同样柱状图能直观的显示出哪个评分最多。通过这张图我们能发现评分在7分的电影数最多，从7分开始向两周递减的趋势。但低分段条目数明显多于高分段，因此电影市场的优质化还有待提高。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_pubdate_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对电影发行趋势进行分析</h2>
+									
+                                    <p style="height: 500px">通过历年来电影的发行数量我们可以判断出整个电影市场的活跃情况。从这张图中我们可以看出电影市场在2000年到2010年比较低沉、发片量比以往要少，结合那个时间段我们分析是因为当时全球正处于经融危机，每个行业都受到了侵袭。这张图中也可以看出，每月电影发行量大多处于4-8部且能够稳定在这个数据量，这说明整个电影行业在不遭受重大冲击的情况下还是很稳定的。</p>
+								
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_year_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="movies_year_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对历年电影产量进行分析</h2>
+									<h4>饼图</h4>
+                                    <p style="height: 600px">从这张饼图中我们可以看见，电影产量在2005年有了一个质的提升。在2005年之前，电影的产量稳定在一个层级。2005年之后的电影产量上升了一个层级并且总的趋势是在逐渐提高的，并且2005年之后的电影总产量已超过了1966年到2005年的电影产量之和，这说明电影市场正在逐渐扩大。</p>
+									<h4>柱状图</h4>
+									   <p style="height: 550px">从这张图中，我们可以发现电影产量的最高峰在2017年产生，这说明电影市场正在经历最美好的时代。在2017年之后，电影市场或许正在转型向着高质量的作品前进，产量稍有下降。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_countries_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="movies_countries_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对不同国家电影产量进行分析</h2>
+									<h4>饼图</h4>
+									<p style="height: 600px">1、从这张图中我们可以发现，电影市场是属于整个世界的，但中美日法英等国的电影产量总体占据了整个市场的一半多。结合大数据的分析，我们可以发现这与国家的经济水平息息相关。只有经济水平高了大众才会对这类有所付出，同样有人欣赏才会有市场。</p>
+									<h4>柱状图</h4>
+                                    <p style="height: 550px">2、从这张图中我们可以发现美国的电影产量处于领先的位置。作为世界第一大经济体，这直接反应了他的经济水平。整个电影市场面对不同国家的产品保持着开放包容的态度使得多个国家都能有自己的电影。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_languages_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="movies_languages_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>通过对不同语种电影进行分析</h2>
+									<h4>饼图</h4>
+                                    <p style="height: 600px">这张图显示了不同电影语言的产量，其中英语、中文、日语、法语、意大利语等语言占据了绝大多数。这也间接反映了世界几大主流语言以及他们的市场情况。</p>
+									<h4>柱状图</h4>
+									<p style="height: 550px">2、这张图可以明显的看出来英语是电影市场中使用最多的语言，这也直接印证了英语是世界通用语言。汉语、日语、法语等紧随其后，呈现多元化的局面。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_genres_pie" style="width:800px; height:600px;"></div>
+                                        <br />
+                                        <div id="movies_genres_bar" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对不同电影类型的产量进行分析</h2>
+									<h4>饼图</h4>
+                                    <p style="height: 600px">不同电影类型的产量直接反应了大众喜爱的电影类型以及拍摄最多的电影类型。这张图中剧情、喜剧、动作、爱情、恐怖等几大类型产量较多，剧情占据了领先的位置。多种类型的电影反应了大众需求的多样性。</p>
+									
+									<h4>柱状图</h4>
+									 <p style="height: 550px">这张图中我们可以发现剧情类型的电影产量最多，这说明大众比较喜欢这类叙述性、有故事情节的电影，也可以给未来初入电影行业的从业者一个学习的方向，从受众多、经验多的剧情片入手。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_star_num_bar3d" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对评分星级以及评分数量进行分析</h2>
+                                    <p style="height: 550px">这张图反应了评分星级、条目以及评论数的三维关系。我们发现，评分星级越高，越来越多的电影拥有超高的评论量。反之，低星级的电影评论量都很低。我们分析是因为评分越高看得人越多，受到的理解、分析越多，也就产生更多的评论。而评分低的电影因为评分低，看得人便少，从而评论量变少。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_star_durations_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对片场与评分关系进行分析</h2>
+                                    <p style="height: 550px">这张图分析了片长与评分的关系。我么发现评分较低的电影普遍电影时长在40-120分钟之间，同样的，在40-120分钟时长内，评分的差距也是最大的。而短时长的电影因为可能是先导片等因素带给人吸引力评分较高。长时长的电影记录片较多，而纪录片的受众大多是特定的爱好者，因此评分也较高。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_star_pubdate_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对上映时间与评分关系进行分析</h2>
+                                    <p style="height: 550px">这张图反映了上映时间与评分的关系。不难看出评分较低的电影大多出现在2000年以后，而2000年以前的电影评分稳定在6-9分之间。进过我们的分析，应该是2000年以前社会经济水平并不算很高，拍电影的成本也比较大，因此拍出来的大多数是优质电影。而2000年以后，经济有了较大的提升，从业者也越来越多，这就不可避免的有低质量的电影产生。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                                <div class="curved-inner-pro">
+                                    <div class="curved-ctn">
+                                        <!--<h2>文本</h2>-->
+                                        <!--<input type="button" name="" onclick="fetchChart('movie','movies_rating_pie','1292052','60','0');" id="" value="显示图表" />-->
+                                        <div id="movies_star_comments_count_scatter" style="width:800px; height:600px;"></div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                            <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                                <div class="past-day-statis">
+                                     <h2>对评论数与评分的关系进行分析</h2>
+                                    <p style="height: 550px"> 这张图展示了评论数与评分的关系。当评分越来越高时，评论数随之增长。我们分析是因为评分越高带来更多的观看者，则带来更多人的想法与言论。反之评分低的产品并不吸引人，因此带来的观看者不多，从而评论数不多。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="footer-copy-right">
+                                <p>Copyright &copy; 2020 Company 豆瓣探索者 All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="btn_top" style="position:fixed;bottom:21px;right:21px;">
+                <a href="#top"><img src="https://www.sju.site/web/Zero/images/scrollup.png" alt="返回顶部" /></a>
+            </div>
+            <div id="loading" >
+                <div class="clear"></div>
+                <div id="circle"></div>
+                <div id="circletext">加载完成！</div>
+                <div id="circle1"></div>
+            </div>
+		</div>
+        <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/sparkline/jquery.sparkline.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/sparkline/sparkline-active.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+        <script type="text/javascript" src="js/echarts-gl.js"></script>
+        <script src="js/js.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">  
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    movies: null,
+                    movies_comments: null,
+                    movies_reviews: null,
+                    music: null,
+                    music_comments: null,
+                    music_reviews: null,
+                    book: null,
+                    book_comments: null,
+                    book_reviews: null,
+                    width: 800,
+                    heigth: 600
+                }
+            },
+            mounted() {
+                axios
+                    .get(BASE_URL + '/count/')
+                    .then(response => (
+                    this.movies = response.data.data.movies,
+                    this.movies_comments = response.data.data.movies_comments,
+                    this.movies_reviews = response.data.data.movies_reviews,
+                    this.music = response.data.data.music,
+                    this.music_comments = response.data.data.music_comments,
+                    this.music_reviews = response.data.data.music_reviews,
+                    this.book = response.data.data.book,
+                    this.book_comments = response.data.data.book_comments,
+                    this.book_reviews = response.data.data.book_reviews))
+                    .
+                catch (function (error) { // 请求失败处理
+                    console.log(error);
+                });
+            }
+        })
+
+         dt = [['movie', 'movies_rating_pie', 50], ['movie', 'movies_rating_bar', 50], ['movie',
+                    'movies_pubdate_scatter', 50], ['movie', 'movies_year_pie', 50], ['movie', 'movies_year_bar', 50], [
+                    'movie', 'movies_countries_pie', 50], ['movie', 'movies_countries_bar', 50], ['movie',
+                    'movies_languages_pie', 50], ['movie', 'movies_languages_bar', 50], ['movie', 'movies_genres_pie',
+                    50], ['movie', 'movies_genres_bar', 50], ['movie', 'movies_star_num_bar3d', 50], ['movie',
+                    'movies_star_durations_scatter', 50], ['movie', 'movies_star_pubdate_scatter', 50], ['movie',
+                    'movies_star_comments_count_scatter', 50]];
+        var i = 0;
+        var num = 500;
+        $(function () {
+            $("#circle").fadeIn(800);
+            $("#circle1").fadeIn(1200);
+            $("#circletext").text("加载中！").fadeIn(1700);
+            fetchChartAll(dt[i][0], dt[i][1], num, i, 0);
+	        showScroll();
+	        function showScroll(){
+	        	$(window).scroll( function() { 
+	        	    scrollValue=$(window).scrollTop();
+	        		scrollValue > 100 ? $('div[id=btn_top]').fadeIn():$('div[id=btn_top]').fadeOut();
+	        	} );
+	        	$('#btn_top').click(function(){	
+	        		var value=scrollValue/8;
+// 	        		console.log(Math.round(value));
+	        		$("html,body").animate({scrollTop:0},Math.round(value));	
+	        	});	
+	        }
+        });
+        
+        
+        function freshChartAll() {
+            fetchChartAll(dt[i][0], dt[i][1], num, i, 1);
+            $("#circle").fadeIn(800);
+            $("#circle1").fadeIn(1200);
+            $("#circletext").text("加载中！").fadeIn(1700);
+        }
+        function freshChartNumberAll(){
+            num = $('#number_count').val();
+            fetchChartAll(dt[i][0], dt[i][1], num, i, 0);
+            $("#circle").fadeIn(800);
+            $("#circle1").fadeIn(1200);
+            $("#circletext").text("加载中！").fadeIn(1700);
+        }
+        function fetchChartAll(type, typ, num, j, nochache) {
+            // typ = GetQueryValue("typ");
+            var chart = echarts.init(document.getElementById(typ), 'white', {
+                renderer: 'canvas'
+            });
+            ur = BASE_URL + "/charts/" + type + "/?id=&typ=" + typ + "&num=" + num + "&nochache=" + nochache;
+            if (typ == "get_emotion") {
+                ur = BASE_URL + "/get_emotion/?id=&type=" + type + "&nochache=" + nochache;
+            } else if (typ == "wordcloud") {
+                ur = BASE_URL + "/wordcloud/?id=&type=" + type + "&nochache=" + nochache;
+            }
+            $.ajax({
+                type: "GET",
+                url: ur,
+                dataType: 'json',
+                success: function (result) {
+                    chart.setOption(result.data);
+                    j++;
+                    console.log(j);
+                    if (j < dt.length) {
+                        // if(j<2){
+                        fetchChartAll(dt[j][0], dt[j][1], num, j, nochache); //链式调用
+                    }else{
+                        $("#circle").fadeOut(800);
+                        $("#circle1").fadeOut(1200);
+                        $("#circletext").text("加载完成！").fadeOut(1700);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $("#circle").fadeOut(800);
+                    $("#circle1").fadeOut(1200);
+                    $("#circletext").text("加载完成！").fadeOut(1700);
+                    alert("请求失败，服务器端出错！");
+                    j++;
+                    if (j < dt.length) {
+                        // if(j<2){
+                        fetchChartAll(dt[j][0], dt[j][1], num, j, nochache); //链式调用
+                    }else{
+                        $("#circle").fadeOut(800);
+                        $("#circle1").fadeOut(1200);
+                        $("#circletext").text("加载完成！").fadeOut(1700);
+                    }
+                    return
+                }
+            });
+        }
+
+        function fetchChart(type, typ, id, num, nochache) {
+            // typ = GetQueryValue("typ");
+            var chart = echarts.init(document.getElementById(typ), 'white', {
+                renderer: 'canvas'
+            });
+            ur = BASE_URL + "/charts/" + type + "/?id=" + id + "&typ=" + typ + "&num=" + num + "&nochache=" + nochache;
+            if (typ == "get_emotion") {
+                ur = BASE_URL + "/get_emotion/?id=" + id + "&type=" + type + "&nochache=" + nochache + "&n=" + num;
+            } else if (typ == "wordcloud") {
+                ur = BASE_URL + "/wordcloud/?id=" + id + "&type=" + type + "&nochache=" + nochache;
+            }
+            $.ajax({
+                type: "GET",
+                url: ur,
+                dataType: 'json',
+                success: function (result) {
+                    chart.setOption(result.data);
+                }
+            });
+            // return 1;
+        }
+   </script>
+			
+
+			
+    </body>
+
+</html>

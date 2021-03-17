@@ -1,0 +1,474 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>主要阅读介绍</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="never">
+   
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/notika-custom-icon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var BASE_URL = "http://127.0.0.1:8000";
+    </script>
+    <style type="text/css" media="all">
+        .search-dd:hover{
+            display: block!important;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+   <div id="app">
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                      <a href="#"><h1 style="font-family: 宋体;color: black;">豆瓣探索者</h1></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-search"></i></span></a>
+                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
+                                    <div class="search-input">
+                                        <i class="notika-icon notika-left-arrow"></i>
+                                        <input type="text" id="get_search" onchange="search();"/>
+                                        <div id="search_contain">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
+                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
+                                    <div class="hd-mg-tt">
+                                        <h2>消息</h2>
+                                    </div>
+                                    <div class="hd-message-info">
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/1.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>李磊</h3>
+                                                    <p>评论了最新电影《校园情圣》</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="hd-mg-va">
+                                        <a href="#">点击全部</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <li><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> 图表</a>
+                        </li>
+                        <li class="active"><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> 热门</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content custom-menu-content">
+                        <div id="Home" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="index.html">电影</a>
+                                </li>
+                                <li><a href="chart-2.html">阅读</a>
+                                </li>
+                                <li><a href="chart-3.html">音乐</a>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    
+                        <div id="Page" class="tab-pane active notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="movie.html">电影</a>
+                                </li>
+                                <li><a href="music.html">音乐</a>
+                                </li>
+                                <li><a href="book.html" style="background: rgb(6, 247, 164) none repeat scroll 0% 0%;border-radius: 10px;">阅读</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu area End-->
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>阅读荟萃</h2>
+										<p>时下热门</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+    <!-- Contact area Start-->
+    <div class="contact-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list">
+                        <a href="content.html?type=book&id=25862578">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/17.jpg" alt="" />
+                            </div>
+                         
+                        </div>
+                        <div class="contact-ctn">
+                            <div class="contact-ad-hd">
+								<h2>解忧杂货店</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>人们将困惑写成信投进杂货店，奇妙的事情随机不断发生</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱：</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list sm-res-mg-t-30">
+                        <a href="content.html?type=book&id=6082808">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/18.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                              
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>百年孤独</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>巧妙揉合了现实与虚幻，展现了瑰丽的想象世界</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <a href="content.html?type=book&id=1200840">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/19.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                                
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>平凡的世界</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>以孙少安和孙少平两兄弟为中心，刻画了当时社会众多普通人的形象</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <a href="content.html?type=book&id=24257486">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/20.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>局外人</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>形象地体现了存在主义哲学关于荒谬地概念</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=book&id=27013741">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/21.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>黄金时代</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>对现实的批判和嘲讽，对人生状态地反思，实现了知青文学的突破</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=book&id=2035171">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/22.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>人生的枷锁</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>可以说是一部呼唤人性全面彻底自由解放的宣言</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=book&id=2159042">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/23.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>挪威的森林</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>主角纠缠在情绪不定地直子和开朗活泼地小林绿字之间</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=book&id=2567698">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/24.jpg" alt="" />
+                            </div>
+                            
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>三体</h2>
+								<p class="ctn-ads">小说</p>
+							</div>
+                            <p>讲述了人类文明和三体文明地信息交流，生死搏杀，以及兴衰历程</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact area End-->
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                         <p>Copyright &copy; 2020 Company 豆瓣探索者 All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+    <!-- End Footer area-->
+    <!-- jquery
+		============================================ -->
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sparkline/jquery.sparkline.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sparkline/sparkline-active.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-gl.js"></script>
+    <script src="js/js.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

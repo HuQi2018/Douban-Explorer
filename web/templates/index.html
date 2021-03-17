@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{{ message }}
+{% if img != '0' and img %}
+    <img src="data:image/png;base64,{{ img }}">
+{% else %}
+   <h3>该评论不存在！</h3>
+{% endif %}
+
+{% if condition1 %}
+   ... display 1
+{% elif condition2 %}
+   ... display 2
+{% else %}
+   ... display 3
+{% endif %}
+   ... display 4
+{% ifequal section 'sitenews' %}
+    <h1>Site News</h1>
+{% else %}
+    <h1>No News Here</h1>
+{% endifequal %}
+
+{# 这是一个注释 #}
+{% include "nav.html" %}
+</body>
+</html>

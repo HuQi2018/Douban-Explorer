@@ -1,0 +1,475 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>主要电影介绍</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="never">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/notika-custom-icon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var BASE_URL = "http://127.0.0.1:8000";
+    </script>
+    <style type="text/css" media="all">
+        .search-dd:hover{
+            display: block!important;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+   <div id="app">
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                      <a href="#"><h1 style="font-family: 宋体;color: black;">豆瓣探索者</h1></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-search"></i></span></a>
+                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
+                                    <div class="search-input">
+                                        <i class="notika-icon notika-left-arrow"></i>
+                                        <input type="text" id="get_search" onchange="search();"/>
+                                        <div id="search_contain">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
+                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
+                                    <div class="hd-mg-tt">
+                                        <h2>消息</h2>
+                                    </div>
+                                    <div class="hd-message-info">
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/1.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>李磊</h3>
+                                                    <p>评论了最新电影《校园情圣》</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="hd-mg-va">
+                                        <a href="#">点击全部</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <li><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> 图表</a>
+                        </li>
+                        <li class="active"><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> 热门</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content custom-menu-content">
+                        <div id="Home" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="index.html">电影</a>
+                                </li>
+                                <li><a href="chart-2.html">阅读</a>
+                                </li>
+                                <li><a href="chart-3.html">音乐</a>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    
+                        <div id="Page" class="tab-pane active notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="movie.html" style="background: rgb(6, 247, 164) none repeat scroll 0% 0%;border-radius: 10px;">电影</a>
+                                </li>
+                                <li><a href="music.html">音乐</a>
+                                </li>
+                                <li><a href="book.html" >阅读</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu area End-->
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>电影荟萃</h2>
+										<p>时下热门</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+    <!-- Contact area Start-->
+    <div class="contact-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list">
+                        <a href="content.html?type=movie&id=26752088">
+                            <div class="contact-win">
+                                <div class="contact-img">
+                                    <img src="img/post/1.jpg" alt="" />
+                                </div>
+                             
+                            </div>
+                            <div class="contact-ctn">
+                                <div class="contact-ad-hd">
+								<h2>我不是药神</h2>
+								<p class="ctn-ads">剧情/喜剧</p>
+							</div>
+                                <p>本片改编自慢粒白血病患者陆勇代购抗癌药的真是事迹</p>
+                            </div>
+                            <div class="social-st-list">
+                                <div class="social-sn">
+                                    <h2>喜爱：</h2>
+                                    <p>956</p>
+                                </div>
+                                <div class="social-sn">
+                                    <h2>评论:</h2>
+                                    <p>434</p>
+                                </div>
+                                <div class="social-sn">
+                                    <h2>观看:</h2>
+                                    <p>676</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list sm-res-mg-t-30">
+                        <a href="content.html?type=movie&id=1292052">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/2.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                              
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>肖申克的救赎</h2>
+								<p class="ctn-ads">剧情/犯罪</p>
+							</div>
+                            <p>该片改编自斯蒂芬.金《四季奇谭》中收录的同名小说</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <a href="content.html?type=movie&id=1291561">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/3.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                                
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>千与千寻</h2>
+								<p class="ctn-ads">剧情/动画/奇幻</p>
+							</div>
+                            <p>为了救小白千寻又踏上了她的冒险之旅</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                        <a href="content.html?type=movie&id=1292722">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/4.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>泰坦尼克号</h2>
+								<p class="ctn-ads">剧情/爱情/灾难</p>
+							</div>
+                            <p>泰坦尼克号面临沉船命运，罗斯杰克的爱情历经生死考验</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=movie&id=3011091">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/5.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>忠犬八公的故事</h2>
+								<p class="ctn-ads">剧情</p>
+							</div>
+                            <p>该片根据上世纪30年代发生在日本的真是故事改编</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=movie&id=1849031">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/6.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>当幸福来敲门</h2>
+								<p class="ctn-ads">剧情/家庭/传记</p>
+							</div>
+                            <p>加纳坚信，幸福明天就会来临</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=movie&id=1652587">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/7.jpg" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                               
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>阿凡达</h2>
+								<p class="ctn-ads">动作/科幻/冒险</p>
+							</div>
+                            <p>本片是电影史上最为昂贵的作品</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="contact-list mg-t-30">
+                        <a href="content.html?type=movie&id=1929463">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="img/post/8.jpg" alt="" />
+                            </div>
+                            
+                        </div>
+                        <div class="contact-ctn">
+							<div class="contact-ad-hd">
+								<h2>少年派的奇幻漂流</h2>
+								<p class="ctn-ads">剧情/奇幻/冒险</p>
+							</div>
+                            <p>少年派和理查德.帕克，神奇的冒险旅程就这样意外开始了</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>喜爱:</h2>
+                                <p>956</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>评论:</h2>
+                                <p>434</p>
+                            </div>
+                            <div class="social-sn">
+                                <h2>观看:</h2>
+                                <p>676</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact area End-->
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                         <p>Copyright &copy; 2020 Company 豆瓣探索者 All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+    <!-- End Footer area-->
+    <!-- jquery
+		============================================ -->
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sparkline/jquery.sparkline.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sparkline/sparkline-active.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-gl.js"></script>
+    <script src="js/js.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">  </script>
+</body>
+
+</html>
