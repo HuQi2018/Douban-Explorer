@@ -13,8 +13,8 @@
     其他文件：/other
     	图表.ipynb ： 使用Juypter分析时创建的文件。
     	（因额外的爬取代码中相关链接的api的key已无法使用，所以就不给出了）
-    	MongoDB数据库文件：链接：https://pan.baidu.com/s/1rh-l0PLnldUXyBCJCtcN5w 提取码：n86j 
-    		将其所有文件放置/替换MongoDB的test数据集目录，即可使用。
+    	MongoDB数据库文件：链接: https://pan.baidu.com/s/1CuwFU5BT-Z0sfxKsRkwihw 提取码: b8f2 
+    		将其所有文件放置/替换MongoDB的\data\test数据集目录，同时将data.tar.gz解压到\data下替换所有，最后admin、test、config、root等都在同一个目录，即可使用。
 
 ## 使用说明（安装Redis、MongoDB的说明，及具体说明请移步 [安装说明书.pdf](安装说明书.pdf)）
 	1.修改mongodb的连接配置：\web\web\settings.py
